@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Estate Marketplace</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header">
+            <div class="logo">
+                <img src="image/f1.png" alt="home">
+            </div>
+            <div class="title">
+                <h1>Real Estate Marketplace</h1>
+            </div>
+        </div>
+        <ul class="menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="search.html">Search</a></li>
+            <li class="dropdown">
+                <a href="about.html" class="dropbtn">About</a>
+                <div class="dropdown-content">
+                    <a href="advice.html">Advice</a>
+                </div>
+            </li>
+            <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+    </header>
+    <section id="contact-sales">
+        <div class="contact-sales-content">
+            <h2>Contact Our Sales Managers</h2>
+            <div class="contact-details">
+                <div class="sales-manager">
+                    <img src="image/c1.png" alt="esra">
+                    <ul>
+                        <li>Name: Era Hidaj</li>
+                        <li>Email: erahidaj@realestate.com</li>
+                        <li>Phone: +355 123 456 789</li>
+                    </ul>
+                </div>
+                <div class="sales-manager">
+                    <img src="image/c2.png" alt="arta">
+                    <ul>
+                        <li>Name: Arta Lleshi</li>
+                        <li>Email: arta.lleshi@realestate.com</li>
+                        <li>Phone: +355 987 654 321</li>
+                    </ul>
+                </div>
+                <div class="sales-manager">
+                    <img src="image/c3.png" alt="era ">
+                    <ul>
+                        <li>Name: Mike Johnson</li>
+                        <li>Email: mike.johnson@realestate.com</li>
+                        <li>Phone: +355 456 789 012</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="form">
+        <h2>Contact Us</h2>
+        <form id="contact-form" action="https://formspree.io/f/xjvnzqer" method="POST" autocomplete="off" >
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name" required><br>
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" required><br>
+            <label for="message">Message:</label><br>
+            <textarea id="message" name="message" required></textarea><br>
+            <button id="submit-button" type="submit">Submit</button>
+        </form>
+
+    </section>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3>Contact Us</h3>
+                <p>Email: info@realestate.com</p>
+                <p>Phone: +355 223 456 789</p>
+                <p>Address: Village Street, City, Country</p>
+            </div>
+            <div class="footer-links">
+                <h3>Helpful Links</h3>
+                <ul>
+                    <li><a href="page.html">Home</a></li>
+                    <li><a href="terms.html">Terms of Use</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                </ul>
+        </div>
+        <div class="connect">
+            <h3>Connect With Us</h3>
+            <ul class="social-icons">
+                <li><a href="https://www.facebook.com/" class="fab fa-facebook" ></a></li>
+                <li><a href="https://twitter.com/" class="fab fa-twitter" ></a></li>
+                <li><a href="https://www.instagram.com/" class="fab fa-instagram" ></a></li>
+            </ul>
+        </div>
+    </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Real Estate Marketplace, Era Hidaj</p>
+        </div>
+    </footer>
+</body>
+</html>
