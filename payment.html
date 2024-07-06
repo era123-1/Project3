@@ -31,7 +31,7 @@
     <section class="payment">
         <div class="payment-container">
             <h2>Payment</h2>
-            <p>Amount to pay: <span id="amount-to-pay">0.00</span></p>
+            <p>Amount to pay: <span id="amount-to-pay">€ 0.00</span></p> 
             <div id="paypal-button-container"></div>
         </div>
     </section>
@@ -66,19 +66,19 @@
     </footer>
 
     <script src="https://www.paypal.com/sdk/js?client-id=ASybQTSMG7kJQgDbZeGZZmgpToLBS9QX7AsDL3H6Vqe_JljOfjqoX0X5yUMUlof-kBlujhI1ABs-641Z&currency=EUR"></script>
-    <script>
+   <script>
         document.addEventListener('DOMContentLoaded', function() {
             const urlParams = new URLSearchParams(window.location.search);
             const price = urlParams.get('price');
-            document.getElementById('amount-to-pay').textContent = price;
-            console.log('Price:', price); 
-    
+            const exchangeRateToEuro = 1.00; 
+            const priceInEuro = parseFloat(price) * exchangeRateToEuro;
+            document.getElementById('amount-to-pay').textContent = `€ ${priceInEuro.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
             paypal.Buttons({
                 createOrder: function(data, actions) {
                     return actions.order.create({
                         purchase_units: [{
                             amount: {
-                                value: price 
+                                value: priceInEuro.toFixed(2) 
                             }
                         }]
                     });
@@ -90,7 +90,6 @@
                 },
                 onError: function(err) {
                     console.error('Pagesa dështoi:', err);
-                    
                 }
             }).render('#paypal-button-container'); 
         });
