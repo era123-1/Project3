@@ -6,7 +6,6 @@
     <title>Real Estate Marketplace</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
     <link rel="stylesheet" href="style.css">
- 
 </head>
 <body>
     <header>
@@ -20,7 +19,7 @@
         </div>
         <ul class="menu">
             <li><a href="index.html" class="active">Home</a></li>
-            <li><a href="search.html" class="active">Search</a></li>
+            <li><a href="search.html">Search</a></li>
             <li class="dropdown">
                 <a href="about.html" class="dropbtn">About</a>
                 <div class="dropdown-content">
@@ -84,93 +83,95 @@
                     <li><a href="terms.html">Terms of Use</a></li>
                     <li><a href="privacy.html">Privacy Policy</a></li>
                 </ul>
+            </div>
+            <div class="connect">
+                <h3>Connect With Us</h3>
+                <ul class="social-icons">
+                    <li><a href="https://www.facebook.com/" class="fab fa-facebook"></a></li>
+                    <li><a href="https://twitter.com/" class="fab fa-twitter"></a></li>
+                    <li><a href="https://www.instagram.com/" class="fab fa-instagram"></a></li>
+                </ul>
+            </div>
         </div>
-        <div class="connect">
-            <h3>Connect With Us</h3>
-            <ul class="social-icons">
-                <li><a href="https://www.facebook.com/" class="fab fa-facebook" ></a></li>
-                <li><a href="https://twitter.com/" class="fab fa-twitter" ></a></li>
-                <li><a href="https://www.instagram.com/" class="fab fa-instagram" ></a></li>
-            </ul>
-        </div>
-    </div>
         <div class="footer-bottom">
             <p>&copy; 2024 Real Estate Marketplace, Era Hidaj</p>
         </div>
     </footer>
     
-    const listings = [
-    { location: 'Tirana', price: 100000, size: 100, images: ['image/t.png'], page: 'page1.html' },
-    { location: 'Tirana', price: 75000, size: 75, images: ['image/f3.png'], page: 'page3.html' },
-    { location: 'Tirana', price: 50000, size: 50, images: ['image/f2.png'], page: 'page2.html' },
-    { location: 'Durrës', price: 100000, size: 100, images: ['image/d.png'], page: 'page4.html' },
-    { location: 'Durrës', price: 120000, size: 120, images: ['image/d1.png'], page: 'page41.html' },
-    { location: 'Durrës', price: 150000, size: 150, images: ['image/d2.png'], page: 'page42.html' },
-    { location: 'Vlorë', price: 100000, size: 100, images: ['image/vlore.png'], page: 'page5.html' },
-    { location: 'Vlorë', price: 75000, size: 75, images: ['image/v1.png'], page: 'page51.html' },
-    { location: 'Vlorë', price: 50000, size: 50, images: ['image/v2.png'], page: 'page52.html' }
-];
+    <script>
+        const listings = [
+            { location: 'Tirana', price: 100000, size: 100, images: ['image/t.png'], page: 'page1.html' },
+            { location: 'Tirana', price: 75000, size: 75, images: ['image/f3.png'], page: 'page3.html' },
+            { location: 'Tirana', price: 50000, size: 50, images: ['image/f2.png'], page: 'page2.html' },
+            { location: 'Durrës', price: 100000, size: 100, images: ['image/d.png'], page: 'page4.html' },
+            { location: 'Durrës', price: 120000, size: 120, images: ['image/d1.png'], page: 'page41.html' },
+            { location: 'Durrës', price: 150000, size: 150, images: ['image/d2.png'], page: 'page42.html' },
+            { location: 'Vlorë', price: 100000, size: 100, images: ['image/vlore.png'], page: 'page5.html' },
+            { location: 'Vlorë', price: 75000, size: 75, images: ['image/v1.png'], page: 'page51.html' },
+            { location: 'Vlorë', price: 50000, size: 50, images: ['image/v2.png'], page: 'page52.html' }
+        ];
 
-const exchangeRateToEuro = 1.00; 
+        const exchangeRateToEuro = 1.00; 
 
-const searchForm = document.getElementById('search-form');
-searchForm.addEventListener('submit', function(event) {
-    event.preventDefault();
-    displayListings();
-});
-
-function displayListings() {
-    const location = document.getElementById('location').value;
-    const price = parseFloat(document.getElementById('price').value) * exchangeRateToEuro; 
-    const size = parseFloat(document.getElementById('size').value);
-
-    let filteredListings = listings.filter(listing => {
-        return (
-            listing.location.toLowerCase() === location.toLowerCase() &&
-            listing.price >= price &&
-            listing.size >= size
-        );
-    });
-
-    filteredListings.sort((a, b) => a.price - b.price || a.size - b.size);
-
-    const listingsContainer = document.getElementById('listings-container');
-    listingsContainer.innerHTML = '';
-
-    filteredListings.forEach(listing => {
-        const listingElement = document.createElement('div');
-        listingElement.classList.add('listing');
-        listingElement.innerHTML = `
-            <h3>${listing.location}</h3>
-            <p><strong>Price:</strong> &euro; ${listing.price.toLocaleString()}</p>
-            <p><strong>Size:</strong> ${listing.size}m²</p>
-        `;
-        
-        listing.images.forEach(image => {
-            const imgElement = document.createElement('img');
-            imgElement.src = image;
-            imgElement.alt = listing.location;
-            listingElement.appendChild(imgElement);
+        const searchForm = document.getElementById('search-form');
+        searchForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            displayListings();
         });
 
-        const moreInfoButton = document.createElement('button');
-        moreInfoButton.textContent = 'More details';
-        moreInfoButton.classList.add('more-info-btn');
-        moreInfoButton.addEventListener('click', () => {
-            window.location.href = listing.page;
-        });
-        listingElement.appendChild(moreInfoButton);
+        function displayListings() {
+            const location = document.getElementById('location').value;
+            const price = parseFloat(document.getElementById('price').value) * exchangeRateToEuro; 
+            const size = parseFloat(document.getElementById('size').value);
 
-        listingsContainer.appendChild(listingElement);
-    });
+            let filteredListings = listings.filter(listing => {
+                return (
+                    listing.location.toLowerCase() === location.toLowerCase() &&
+                    listing.price >= price &&
+                    listing.size >= size
+                );
+            });
 
-    if (filteredListings.length > 0) {
-        document.getElementById('image1').style.display = 'none'; 
-    } else {
-        document.getElementById('image1').style.display = 'block'; 
-    }
-}
-displayListings();
-</script>
+            filteredListings.sort((a, b) => a.price - b.price || a.size - b.size);
+
+            const listingsContainer = document.getElementById('listings-container');
+            listingsContainer.innerHTML = '';
+
+            filteredListings.forEach(listing => {
+                const listingElement = document.createElement('div');
+                listingElement.classList.add('listing');
+                listingElement.innerHTML = `
+                    <h3>${listing.location}</h3>
+                    <p><strong>Price:</strong> &euro; ${listing.price.toLocaleString()}</p>
+                    <p><strong>Size:</strong> ${listing.size}m²</p>
+                `;
+                
+                listing.images.forEach(image => {
+                    const imgElement = document.createElement('img');
+                    imgElement.src = image;
+                    imgElement.alt = listing.location;
+                    listingElement.appendChild(imgElement);
+                });
+
+                const moreInfoButton = document.createElement('button');
+                moreInfoButton.textContent = 'More details';
+                moreInfoButton.classList.add('more-info-btn');
+                moreInfoButton.addEventListener('click', () => {
+                    window.location.href = listing.page;
+                });
+                listingElement.appendChild(moreInfoButton);
+
+                listingsContainer.appendChild(listingElement);
+            });
+
+            if (filteredListings.length > 0) {
+                document.getElementById('image1').style.display = 'none'; 
+            } else {
+                document.getElementById('image1').style.display = 'block'; 
+            }
+        }
+
+        displayListings();
+    </script>
 </body>
 </html>
