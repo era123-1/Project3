@@ -111,7 +111,7 @@
     { location: 'Vlorë', price: 50000, size: 50, images: ['image/v2.png'], page: 'page52.html' }
 ];
 
-const exchangeRateToEuro = 1.00; // Përdorim kursin aktual, mund ta ndryshoni sipas nevojës
+const exchangeRateToEuro = 1.00; 
 
 const searchForm = document.getElementById('search-form');
 searchForm.addEventListener('submit', function(event) {
@@ -121,7 +121,7 @@ searchForm.addEventListener('submit', function(event) {
 
 function displayListings() {
     const location = document.getElementById('location').value;
-    const price = parseFloat(document.getElementById('price').value) * exchangeRateToEuro; // Konverto çmimin në euro
+    const price = parseFloat(document.getElementById('price').value) * exchangeRateToEuro; 
     const size = parseFloat(document.getElementById('size').value);
 
     let filteredListings = listings.filter(listing => {
@@ -142,7 +142,7 @@ function displayListings() {
         listingElement.classList.add('listing');
         listingElement.innerHTML = `
             <h3>${listing.location}</h3>
-            <p><strong>Price:</strong> &euro; ${listing.price.toLocaleString()}</p> <!-- Shfaq cmimin në formatin e monedhës euro -->
+            <p><strong>Price:</strong> &euro; ${listing.price.toLocaleString()}</p>
             <p><strong>Size:</strong> ${listing.size}m²</p>
         `;
         
