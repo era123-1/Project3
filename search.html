@@ -98,7 +98,7 @@
         </div>
     </footer>
     
-    <script>
+  <script>
         const listings = [
             { location: 'Tirana', price: 100000, size: 100, images: ['image/t.png'], page: 'page1.html' },
             { location: 'Tirana', price: 75000, size: 75, images: ['image/f3.png'], page: 'page3.html' },
@@ -111,7 +111,7 @@
             { location: 'Vlorë', price: 50000, size: 50, images: ['image/v2.png'], page: 'page52.html' }
         ];
 
-        const exchangeRateToEuro = 1.00; 
+        const exchangeRateToEuro = 1.00;
 
         const searchForm = document.getElementById('search-form');
         searchForm.addEventListener('submit', function(event) {
@@ -121,7 +121,7 @@
 
         function displayListings() {
             const location = document.getElementById('location').value;
-            const price = parseFloat(document.getElementById('price').value) * exchangeRateToEuro; 
+            const price = parseFloat(document.getElementById('price').value) * exchangeRateToEuro;
             const size = parseFloat(document.getElementById('size').value);
 
             let filteredListings = listings.filter(listing => {
@@ -171,6 +171,7 @@
             }
         }
 
+        // Call displayListings initially
         displayListings();
     </script>
 </body>
