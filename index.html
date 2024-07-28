@@ -95,12 +95,13 @@
             let totalVotes = localStorage.getItem('totalVotes') ? parseInt(localStorage.getItem('totalVotes')) : 0;
             let totalRating = localStorage.getItem('totalRating') ? parseInt(localStorage.getItem('totalRating')) : 0;
 
-            // Funksioni për të përditësuar shfaqjen e numrit të votave
+
+            const hasVoted = localStorage.getItem('hasVoted') === 'true';
+
             function updateVotesDisplay() {
                 votesContainer.textContent = totalVotes > 0 ? `${totalVotes} Votes` : 'No ratings yet. Be the first one to rate!';
             }
 
-            // Funksioni për të përditësuar mbushjen e yjeve
             function updateStars() {
                 const averageRating = totalVotes > 0 ? totalRating / totalVotes : 0; 
                 stars.forEach((star, index) => {
@@ -112,20 +113,24 @@
                 });
             }
 
-            // Përditësojmë shfaqjen e votave dhe yjeve në ngarkimin e faqes
             updateVotesDisplay();
             updateStars();
 
             stars.forEach(star => {
                 star.addEventListener('click', function(e) {
-                    const value = parseInt(e.target.getAttribute('data-value'));
-                    totalVotes++;
-                    totalRating += value;
-                    updateVotesDisplay();
-                    updateStars();
-                    // Ruajmë të dhënat në localStorage
-                    localStorage.setItem('totalVotes', totalVotes);
-                    localStorage.setItem('totalRating', totalRating);
+                    if (!hasVoted) {
+                        const value = parseInt(e.target.getAttribute('data-value'));
+                        totalVotes++;
+                        totalRating += value;
+                        updateVotesDisplay();
+                        updateStars();
+                       
+                        localStorage.setItem('totalVotes', totalVotes);
+                        localStorage.setItem('totalRating', totalRating);
+                        localStorage.setItem('hasVoted', 'true'); // 
+                    } else {
+                        alert('You have already voted!');
+                    }
                 });
             });
         });
