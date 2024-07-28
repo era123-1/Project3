@@ -6,6 +6,11 @@
     <title>Real Estate Marketplace</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .star.filled {
+            color: gold;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -44,9 +49,9 @@
 
     <section id="hero">
         <div class="hero-content">
-            <h2>Welcome to Real Estate Marketplace </h2>
-            <div id="image" >
-                <img src="large.png" alt="Large Image">   
+            <h2>Welcome to Real Estate Marketplace</h2>
+            <div id="image">
+                <img src="large.png" alt="Large Image">
             </div>
             <p>Find your dream home today!</p>
             <a href="#search" class="btn">Start Searching</a>
@@ -72,9 +77,9 @@
             <div class="connect">
                 <h3>Connect With Us</h3>
                 <ul class="social-icons">
-                    <li><a href="https://www.facebook.com/" class="fab fa-facebook" ></a></li>
-                    <li><a href="https://twitter.com/" class="fab fa-twitter" ></a></li>
-                    <li><a href="https://www.instagram.com/" class="fab fa-instagram" ></a></li>
+                    <li><a href="https://www.facebook.com/" class="fab fa-facebook"></a></li>
+                    <li><a href="https://twitter.com/" class="fab fa-twitter"></a></li>
+                    <li><a href="https://www.instagram.com/" class="fab fa-instagram"></a></li>
                 </ul>
             </div>
         </div>
@@ -82,46 +87,48 @@
             <p>&copy; 2024 Real Estate Marketplace, Era Hidaj</p>
         </div>
     </footer>
-    <script src="script.js"></script>
     <script>
-   document.addEventListener('DOMContentLoaded', function() {
-    const stars = document.querySelectorAll('.stars .star');
-    const votesContainer = document.querySelector('.votes');
-    let totalVotes = localStorage.getItem('totalVotes') ? parseInt(localStorage.getItem('totalVotes')) : 0;
-    let totalRating = localStorage.getItem('totalRating') ? parseInt(localStorage.getItem('totalRating')) : 0;
+        document.addEventListener('DOMContentLoaded', function() {
+            const stars = document.querySelectorAll('.stars .star');
+            const votesContainer = document.querySelector('.votes');
 
-    updateVotesDisplay();
-    updateStars();
+            let totalVotes = localStorage.getItem('totalVotes') ? parseInt(localStorage.getItem('totalVotes')) : 0;
+            let totalRating = localStorage.getItem('totalRating') ? parseInt(localStorage.getItem('totalRating')) : 0;
 
-    stars.forEach(star => {
-        star.addEventListener('click', function(e) {
-            if (totalVotes < 1) { 
-                const value = parseInt(e.target.getAttribute('data-value'));
-                totalVotes++;
-                totalRating += value;
-                updateVotesDisplay();
-                updateStars();
-                localStorage.setItem('totalVotes', totalVotes);
-                localStorage.setItem('totalRating', totalRating);
+            // Funksioni për të përditësuar shfaqjen e numrit të votave
+            function updateVotesDisplay() {
+                votesContainer.textContent = totalVotes > 0 ? `${totalVotes} Votes` : 'No ratings yet. Be the first one to rate!';
             }
-        });
-    });
 
-    function updateVotesDisplay() {
-        votesContainer.textContent = `${totalVotes} Votes`;
-    }
-
-    function updateStars() {
-        const averageRating = totalVotes > 0 ? totalRating / totalVotes : 0; 
-        stars.forEach((star, index) => {
-            if (index < Math.round(averageRating)) { 
-                star.classList.add('filled');
-            } else {
-                star.classList.remove('filled');
+            // Funksioni për të përditësuar mbushjen e yjeve
+            function updateStars() {
+                const averageRating = totalVotes > 0 ? totalRating / totalVotes : 0; 
+                stars.forEach((star, index) => {
+                    if (index < Math.round(averageRating)) {
+                        star.classList.add('filled');
+                    } else {
+                        star.classList.remove('filled');
+                    }
+                });
             }
+
+            // Përditësojmë shfaqjen e votave dhe yjeve në ngarkimin e faqes
+            updateVotesDisplay();
+            updateStars();
+
+            stars.forEach(star => {
+                star.addEventListener('click', function(e) {
+                    const value = parseInt(e.target.getAttribute('data-value'));
+                    totalVotes++;
+                    totalRating += value;
+                    updateVotesDisplay();
+                    updateStars();
+                    // Ruajmë të dhënat në localStorage
+                    localStorage.setItem('totalVotes', totalVotes);
+                    localStorage.setItem('totalRating', totalRating);
+                });
+            });
         });
-    }
-});
-    </script>   
+    </script>
 </body>
 </html>
