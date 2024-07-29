@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -87,16 +88,15 @@
             <p>&copy; 2024 Real Estate Marketplace, Era Hidaj</p>
         </div>
     </footer>
-    <script>
+  <script>
         document.addEventListener('DOMContentLoaded', function() {
             const stars = document.querySelectorAll('.stars .star');
             const votesContainer = document.querySelector('.votes');
 
+            // Get existing vote data from localStorage
             let totalVotes = localStorage.getItem('totalVotes') ? parseInt(localStorage.getItem('totalVotes')) : 0;
             let totalRating = localStorage.getItem('totalRating') ? parseInt(localStorage.getItem('totalRating')) : 0;
-
-
-            const hasVoted = localStorage.getItem('hasVoted') === 'true';
+            let hasVoted = localStorage.getItem('hasVoted') === 'true';
 
             function updateVotesDisplay() {
                 votesContainer.textContent = totalVotes > 0 ? `${totalVotes} Votes` : 'No ratings yet. Be the first one to rate!';
@@ -124,16 +124,16 @@
                         totalRating += value;
                         updateVotesDisplay();
                         updateStars();
-                       
+
                         localStorage.setItem('totalVotes', totalVotes);
                         localStorage.setItem('totalRating', totalRating);
-                        localStorage.setItem('hasVoted', 'true'); // 
+                        localStorage.setItem('hasVoted', 'true'); 
                     } else {
                         alert('You have already voted!');
                     }
                 });
             });
         });
-    </script>
+  </script>
 </body>
 </html>
